@@ -21,18 +21,23 @@ architecture beh of mux_tb is
 
 begin
 
-    uut: mux
-        port map (a => a, b => b, s => s, o => o);
+    uut: ffd
+        port map (d => d, clk => clk, rst => rst, q => q);
 
     tb: process
     begin
-        a <= x"87654321";
-        b <= x"12345678";
-        s <= '0';
-        wait for 10 ns;
+        d <= '1';
+        clk <= '0';
+        rst <= '0';
+        wait for 5 ns;
 
-        s <= '1';
-        wait for 10 ns;
+        clk <= '1';
+        wait for 5 ns;
+
+        clk <= '0';
+        wait for 5 ns;
+
+        rst <= '1';
         wait;
 
     end process;
